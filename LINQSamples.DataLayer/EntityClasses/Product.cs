@@ -22,14 +22,14 @@ namespace LINQSamples
 
       sb.AppendLine($"{Name}  ID: {ProductID}");
       sb.AppendLine($"   Color: {Color}   Size: {(Size ?? "n/a")}");
-      sb.AppendLine($"   Cost: {StandardCost:c}   Price: {ListPrice:c}");
+      sb.AppendLine($"   Cost: ${StandardCost:n}   Price: ${ListPrice:n}");
       if (NameLength.HasValue)
       {
         sb.AppendLine($"   Name Length: {NameLength}");
       }
       if (TotalSales.HasValue)
       {
-        sb.AppendLine($"   Total Sales: {TotalSales:c}");
+        sb.AppendLine($"   Total Sales: ${TotalSales:n}");
       }
       return sb.ToString();
     }
