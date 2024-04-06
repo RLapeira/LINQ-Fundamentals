@@ -75,10 +75,16 @@ namespace LINQSamples
     public List<Product> GetSpecificColumnsQuery()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              select new Product
+              {
+                  ProductID = prod.ProductID,
+                  Name = prod.Name,
+                  Size = prod.Size
+              }).ToList();
 
       return list;
     }
@@ -91,10 +97,14 @@ namespace LINQSamples
     public List<Product> GetSpecificColumnsMethod()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Method Syntax Here
-      
+      list = products.Select(prod => new Product {
+                    ProductID = prod.ProductID,
+                    Name = prod.Name,
+                    Size = prod.Size
+                }).ToList();
 
       return list;
     }
