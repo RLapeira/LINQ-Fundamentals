@@ -9,7 +9,9 @@ SamplesViewModel vm = new();
 // var result = vm.GetSingleColumnQuery();
 // var result = vm.GetSingleColumnMethod();
 // var result = vm.GetSpecificColumnsQuery();
-var result = vm.GetSpecificColumnsMethod();
+// var result = vm.GetSpecificColumnsMethod();
+// var result = vm.AnonymousClassQuery();
+var result = vm.AnonymousClassMethod();
 
 // Display Results
 vm.Display(result);
