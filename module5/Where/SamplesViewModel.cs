@@ -9,10 +9,12 @@
     public List<Product> WhereQuery()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Query Syntax Here
-
+      list = (from prod in products
+              where prod.Name.StartsWith("S")
+              select prod).ToList();
 
       return list;
     }
@@ -25,10 +27,10 @@
     public List<Product> WhereMethod()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Method Syntax Here
-
+      list = products.Where(p => p.Name.StartsWith("S")).ToList();
 
       return list;
     }
