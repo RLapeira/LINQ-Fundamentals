@@ -13,7 +13,9 @@ SamplesViewModel vm = new();
 //var result = vm.SkipQuery();
 //var result = vm.SkipMethod();
 //var result = vm.SkipWhileQuery();
-var result = vm.SkipWhileMethod();
+//var result = vm.SkipWhileMethod();
+//var result = vm.DistinctQuery();
+var result = vm.DistinctWhere(); // Distinct con Method
 
 // Display Results
 vm.Display(result);

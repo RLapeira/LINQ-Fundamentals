@@ -184,10 +184,11 @@
     public List<string> DistinctQuery()
     {
       List<Product> products = GetProducts();
-      List<string> list = new();
+      List<string> list;
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              select prod.Color).Distinct().OrderBy(c => c).ToList();
 
       return list;
     }
@@ -201,10 +202,10 @@
     public List<string> DistinctWhere()
     {
       List<Product> products = GetProducts();
-      List<string> list = new();
+      List<string> list;
 
       // Write Method Syntax Here
-      
+      list = products.Select(p => p.Color).Distinct().OrderBy(c => c).ToList();
 
       return list;
     }
