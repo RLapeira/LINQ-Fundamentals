@@ -224,13 +224,23 @@
     public Product SingleQuery()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Query Syntax Here
+      //value = (from prod in products
+      //         select prod)
+      //         .Single(prod => prod.ProductID == 706);
 
       // Test the exception handling for finding multiple values
+      //value = (from prod in products
+      //         select prod)
+      //         .Single(prod => prod.Color == "Red");
 
       // Test the exception handling for the list is null
+      products = null;
+      value = (from prod in products
+               select prod)
+               .Single(prod => prod.ProductID == 706);
 
       return value;
     }
@@ -245,9 +255,10 @@
     public Product SingleMethod()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Method Syntax Here
+      value = products.Single(p => p.ProductID == 706);
 
       return value;
     }
