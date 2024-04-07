@@ -4,7 +4,8 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.OrderByQuery();
+//var result = vm.OrderByQuery();
+var result = vm.OrderByMethod();
 
 // Display Results
 vm.Display(result);

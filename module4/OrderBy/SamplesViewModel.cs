@@ -9,10 +9,12 @@
     public List<Product> OrderByQuery()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              orderby prod.Name
+              select prod).ToList(); 
 
       return list;
     }
@@ -25,10 +27,10 @@
     public List<Product> OrderByMethod()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Method Syntax Here
-     
+      list = products.OrderBy(prod => prod.Name).ToList();
 
       return list;
     }
