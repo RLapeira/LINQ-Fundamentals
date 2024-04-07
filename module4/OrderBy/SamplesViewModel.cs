@@ -46,7 +46,9 @@
       List<Product> list = new();
 
       // Write Query Syntax Here
-    
+      list = (from prod in products
+              orderby prod.Name descending
+              select prod).ToList();
 
       return list;
     }
@@ -62,7 +64,7 @@
       List<Product> list = new();
 
       // Write Method Syntax Here
-      
+      list = products.OrderByDescending(prod => prod.Name).ToList();
 
       return list;
     }
