@@ -8,7 +8,11 @@ try
   // Call Sample Method
   //var result = vm.FirstQuery();
   //var result = vm.FirstMethod();
-  var result = vm.FirstOrDefaultQuery();
+  //var result = vm.FirstOrDefaultQuery();
+  //var result = vm.FirstOrDefaultWithDefaultQuery();
+  //var result = vm.FirstOrDefaultMethod();
+  var result = vm.FirstOrDefaultWithDefaultMethod();
+
 
   // Display Results
   vm.Display(result);
