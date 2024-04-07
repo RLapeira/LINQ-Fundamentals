@@ -6,7 +6,9 @@ SamplesViewModel vm = new();
 try
 {
   // Call Sample Method
-  var result = vm.FirstQuery();
+  //var result = vm.FirstQuery();
+  //var result = vm.FirstMethod();
+  var result = vm.FirstOrDefaultQuery();
 
   // Display Results
   vm.Display(result);

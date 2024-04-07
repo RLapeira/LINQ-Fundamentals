@@ -56,8 +56,16 @@
       Product value = null;
 
       // Write Query Syntax Here
+      //value = (from prod in products select prod).FirstOrDefault(prod => prod.Color == "Red");
+      /*value = (from prod in products select prod)
+                .FirstOrDefault(prod => prod.Color == "Red",
+                new Product { ProductID = -1, Name = "NOT FOUND" });*/
 
       // Test the exception handling
+      //value = (from prod in products select prod).FirstOrDefault(prod => prod.Color == "Purple");
+      value = (from prod in products select prod)
+                .FirstOrDefault(prod => prod.Color == "Purple",
+                new Product { ProductID = -1, Name = "NOT FOUND" });
 
       return value;
     }
@@ -73,9 +81,11 @@
     public Product FirstOrDefaultMethod()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Method Syntax Here
+      value = products.FirstOrDefault(p => p.Color == "Red",
+          new Product { ProductID = -1, Name = "NOT FOUND" });
 
       return value;
     }
