@@ -246,10 +246,11 @@
     public List<Product[]> ChunkQuery()
     {
       List<Product> products = GetProducts();
-      List<Product[]> list = new();
+      List<Product[]> list;
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              select prod).Chunk(5).ToList();
 
       return list;
     }
@@ -262,10 +263,10 @@
     public List<Product[]> ChunkMethod()
     {
       List<Product> products = GetProducts();
-      List<Product[]> list = new();
+      List<Product[]> list;
 
       // Write Method Syntax Here
-      
+      list = products.Chunk(5).ToList();
 
       return list;
     }
