@@ -179,13 +179,20 @@
     public Product LastOrDefaultQuery()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Query Syntax Here
-     
+      /*value = (from prod in products
+               select prod)
+               .LastOrDefault(prod => prod.Color == "Red",
+               new Product { ProductID = -1, Name = "NOT FOUND" });*/
 
       // Test the exception handling
-     
+      value = (from prod in products
+               select prod)
+               .LastOrDefault(prod => prod.Color == "Purple",
+               new Product { ProductID = -1, Name = "NOT FOUND" });
+
       return value;
     }
     #endregion
@@ -198,10 +205,11 @@
     public Product LastOrDefaultMethod()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Method Syntax Here
-      
+      value = products.LastOrDefault(p => p.Color == "Red",
+          new Product { ProductID = -1, Name = "NOT FOUND" });
 
       return value;
     }
