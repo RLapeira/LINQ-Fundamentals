@@ -9,7 +9,8 @@ SamplesViewModel vm = new();
 //var result = vm.OrderByDescendingQuery();
 //var result = vm.OrderByDescendingMethod();
 //var result = vm.OrderByTwoFieldsQuery();
-var result = vm.OrderByTwoFieldsMethod();
+//var result = vm.OrderByTwoFieldsMethod();
+var result = vm.OrderByTwoFieldsDescMethod();
 
 // Display Results
 vm.Display(result);
