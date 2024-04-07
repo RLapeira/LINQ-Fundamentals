@@ -17,7 +17,9 @@ try
   //var result = vm.LastOrDefaultQuery();
   //var result = vm.LastOrDefaultMethod();
   //var result = vm.SingleQuery();
-  var result = vm.SingleMethod();
+  //var result = vm.SingleMethod();
+  //var result = vm.SingleOrDefaultQuery();
+  var result = vm.SingleOrDefaultMethod();
 
   // Display Results
   vm.Display(result);

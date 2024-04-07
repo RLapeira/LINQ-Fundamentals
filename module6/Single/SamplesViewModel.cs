@@ -273,17 +273,30 @@
     public Product SingleOrDefaultQuery()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Query Syntax Here
-
+      //value = (from prod in products
+      //         select prod)
+      //         .SingleOrDefault(prod => prod.ProductID == 706);
 
       // Test the exception handling for finding multiple values
-
+      //value = (from prod in products
+      //         select prod)
+      //         .Single(prod => prod.Color == "Red");
 
       // Test the exception handling for the list is empty
+      //products.Clear();
+      //value = (from prod in products
+      //         select prod)
+      //         .SingleOrDefault(prod => prod.ProductID == 706);
 
       // Test the exception handling for the list is empty and a default value is supplied
+      products.Clear();
+      value = (from prod in products
+               select prod)
+               .SingleOrDefault(prod => prod.ProductID == 706,
+               new Product { ProductID = -1, Name = "NO PRODUCTS IN THE LIST" });
 
       // Test the exception handling for the list is null
      
@@ -301,10 +314,11 @@
     public Product SingleOrDefaultMethod()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Method Syntax Here
-      
+      value = products.SingleOrDefault(prod => prod.ProductID == 706,
+               new Product { ProductID = -1, Name = "NO PRODUCTS IN THE LIST" });
 
       return value;
     }
