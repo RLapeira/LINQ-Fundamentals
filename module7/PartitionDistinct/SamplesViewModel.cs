@@ -111,10 +111,12 @@
     public List<Product> SkipQuery()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              orderby prod.Name
+              select prod).Skip(30).ToList();
 
       return list;
     }
@@ -127,11 +129,14 @@
     public List<Product> SkipMethod()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Method Syntax Here
-      
+      //list = products.OrderBy(p => p.Name).Skip(30).ToList();
 
+      // Paging:
+      list = products.OrderBy(p => p.Name).Skip(5).Take(5).ToList();
+      
       return list;
     }
     #endregion
@@ -143,10 +148,12 @@
     public List<Product> SkipWhileQuery()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              orderby prod.Name
+              select prod).SkipWhile(p => p.Name.StartsWith("A")).ToList();
 
       return list;
     }
@@ -159,10 +166,11 @@
     public List<Product> SkipWhileMethod()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Method Syntax Here
-     
+      list = products.OrderBy(p => p.Name)
+                .SkipWhile(p => p.Name.StartsWith("A")).ToList();
 
       return list;
     }
