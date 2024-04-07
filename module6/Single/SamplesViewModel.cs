@@ -138,12 +138,18 @@
     public Product LastQuery()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Query Syntax Here
-      
+      /*value = (from prod in products
+               select prod)
+               .Last(prod => prod.Color == "Red");*/
+
       // Test the exception handling
-      
+      value = (from prod in products
+               select prod)
+               .Last(prod => prod.Color == "Purple");
+
       return value;
     }
     #endregion
@@ -156,10 +162,10 @@
     public Product LastMethod()
     {
       List<Product> products = GetProducts();
-      Product value = null;
+      Product value;
 
       // Write Method Syntax Here
-      
+      value = products.Last(p => p.Color == "Red");
 
       return value;
     }
