@@ -215,10 +215,11 @@
     public List<Product> DistinctByQuery()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Query Syntax Here
-
+      list = (from prod in products
+              select prod).DistinctBy(p => p.Color).OrderBy(p => p.Color).ToList();
 
       return list;
     }
@@ -228,9 +229,10 @@
     public List<Product> DistinctByMethod()
     {
       List<Product> products = GetProducts();
-      List<Product> list = new();
+      List<Product> list;
 
       // Write Method Syntax Here
+      list = products.DistinctBy(p => p.Color).OrderBy(p => p.Color).ToList();
 
 
       return list;
