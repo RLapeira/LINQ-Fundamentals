@@ -11,7 +11,9 @@
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      (from sale in sales
+       let tmp = sale.LineTotal = sale.OrderQty * sale.UnitPrice
+       select sale).ToList();
 
       return sales;
     }
@@ -27,7 +29,7 @@
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      sales.ForEach(sale => sale.LineTotal = sale.OrderQty * sale.UnitPrice);
 
       return sales;
     }
