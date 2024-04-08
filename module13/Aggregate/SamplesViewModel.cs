@@ -235,15 +235,15 @@
     /// </summary>
     public decimal AverageQuery()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax #1 Here
-      
+      value = (from prod in products select prod.ListPrice).Average();
 
       // Write Query Syntax #2 Here
-      
+      value = (from prod in products select prod).Average(prod => prod.ListPrice);
 
       return value;
     }
@@ -255,15 +255,15 @@
     /// </summary>
     public decimal AverageMethod()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax #1 Here
-      
+      value = products.Select(p => p.ListPrice).Average();
 
       // Write Method Syntax #2 Here
-      
+      value = products.Average(p => p.ListPrice);
 
       return value;
     }
@@ -275,15 +275,15 @@
     /// </summary>
     public decimal SumQuery()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax #1 Here
-      
+      value = (from prod in products select prod.ListPrice).Sum();
 
       // Write Query Syntax #2 Here
-      
+      value = (from prod in products select prod).Sum(prod => prod.ListPrice);
 
       return value;
     }
@@ -295,15 +295,15 @@
     /// </summary>
     public decimal SumMethod()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax #1 Here
-      
+      value = products.Select(p => p.ListPrice).Sum();
 
       // Write Method Syntax #1 Here
-      
+      value = products.Sum(p => p.ListPrice);
 
       return value;
     }
