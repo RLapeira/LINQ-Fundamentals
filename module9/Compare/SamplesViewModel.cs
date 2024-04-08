@@ -445,7 +445,7 @@
     /// </summary>
     public List<Product> IntersectUsingComparerQuery()
     {
-      List<Product> list = null;
+      List<Product> list;
       ProductComparer pc = new();
       // Load all Product Data
       List<Product> list1 = ProductRepository.GetAll();
@@ -458,7 +458,8 @@
       list2.RemoveAll(prod => prod.Color == "Red");
 
       // Write Query Syntax Here
-     
+      list = (from prod in list1 select prod)
+                .Intersect(list2, pc).ToList();
 
       return list;
     }
@@ -470,7 +471,7 @@
     /// </summary>
     public List<Product> IntersectUsingComparerMethod()
     {
-      List<Product> list = null;
+      List<Product> list;
       ProductComparer pc = new();
       // Load all Product Data
       List<Product> list1 = ProductRepository.GetAll();
@@ -483,7 +484,7 @@
       list2.RemoveAll(prod => prod.Color == "Red");
 
       // Write Method Syntax Here
-      
+      list = list1.Intersect(list2, pc).ToList();
 
       return list;
     }

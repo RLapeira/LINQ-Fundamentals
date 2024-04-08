@@ -23,7 +23,9 @@ SamplesViewModel vm = new();
 //var result = vm.IntersectIntegersQuery();
 //var result = vm.IntersectIntegersMethod();
 //var result = vm.IntersectProductSalesQuery();
-var result = vm.IntersectProductSalesMethod();
+//var result = vm.IntersectProductSalesMethod();
+//var result = vm.IntersectUsingComparerQuery();
+var result = vm.IntersectUsingComparerMethod();
 
 // Display Results
 vm.Display(result);
