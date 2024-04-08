@@ -11,7 +11,11 @@ SamplesViewModel vm = new();
 //var result = vm.MinQuery();
 //var result = vm.MinMethod();
 //var result = vm.MaxQuery();
-var result = vm.MaxMethod();
+//var result = vm.MaxMethod();
+//var result = vm.MinByQuery();
+//var result = vm.MinByMethod();
+//var result = vm.MaxByQuery();
+var result = vm.MaxByMethod();
 
 // Display Results
 vm.Display(result);

@@ -167,12 +167,12 @@
     /// </summary>
     public Product MinByQuery()
     {
-      Product product = null;
+      Product product;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      product = (from prod in products select prod).MinBy(prod => prod.ListPrice);
 
       return product;
     }
@@ -184,12 +184,12 @@
     /// </summary>
     public Product MinByMethod()
     {
-      Product product = null;
+      Product product;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      product = products.MinBy(p => p.ListPrice);
 
       return product;
     }
@@ -201,12 +201,12 @@
     /// </summary>
     public Product MaxByQuery()
     {
-      Product product = null;
+      Product product;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      product = (from prod in products select prod).MaxBy(prod => prod.ListPrice);
 
       return product;
     }
@@ -218,12 +218,12 @@
     /// </summary>
     public Product MaxByMethod()
     {
-      Product product = null;
+      Product product;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-     
+      product = products.MaxBy(p => p.ListPrice);
 
       return product;
     }
