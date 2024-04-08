@@ -251,7 +251,21 @@
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Method Syntax Here
-
+      list = products.SelectMany(
+              prod => sales.Where(s => s.ProductID == prod.ProductID).DefaultIfEmpty(),
+              (prod, sale) => new ProductOrder
+              {
+                ProductID = prod.ProductID,
+                Name = prod.Name,
+                Color = prod.Color,
+                StandardCost = prod.StandardCost,
+                ListPrice = prod.ListPrice,
+                Size = prod.Size,
+                SalesOrderID = sale?.SalesOrderID,  // Use the null-conditional operator
+                OrderQty = sale?.OrderQty,
+                UnitPrice = sale?.UnitPrice,
+                LineTotal = sale?.LineTotal
+              }).OrderBy(p => p.Name).ToList();
 
       return list;
     }
