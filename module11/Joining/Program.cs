@@ -8,7 +8,8 @@ SamplesViewModel vm = new();
 //var result = vm.InnerJoinMethod();
 //var result = vm.InnerJoinTwoFieldsQuery();
 //var result = vm.InnerJoinTwoFieldsMethod();
-var result = vm.JoinIntoQuery();
+//var result = vm.JoinIntoQuery();
+var result = vm.JoinIntoMethod();
 
 // Display Results
 vm.Display(result);
