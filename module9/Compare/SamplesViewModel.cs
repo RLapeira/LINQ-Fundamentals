@@ -406,12 +406,15 @@
     /// </summary>
     public List<int> IntersectProductSalesQuery()
     {
-      List<int> list = null;
+      List<int> list;
       List<Product> products = ProductRepository.GetAll();
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              select prod.ProductID)
+                .Intersect(from sale in sales select sale.ProductID)
+                .ToList();
 
       return list;
     }
@@ -423,12 +426,14 @@
     /// </summary>
     public List<int> IntersectProductSalesMethod()
     {
-      List<int> list = null;
+      List<int> list;
       List<Product> products = ProductRepository.GetAll();
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Method Syntax Here
-
+      list = products.Select(p => p.ProductID)
+                .Intersect(sales.Select(s => s.ProductID))
+                .ToList();
 
       return list;
     }
