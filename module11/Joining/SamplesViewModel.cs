@@ -77,14 +77,33 @@
     /// </summary>
     public List<ProductOrder> InnerJoinTwoFieldsQuery()
     {
-      List<ProductOrder> list = null;
+      List<ProductOrder> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
       // Load all Sales Order Data
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Query Syntax Here
+      list = (from prod in products
+              join sale in sales on
+                new { prod.ProductID, Qty = (short)6 }
+                  equals
+                new { sale.ProductID, Qty = sale.OrderQty }
+              select new ProductOrder
+              {
+                ProductID = prod.ProductID,
+                Name = prod.Name,
+                Color = prod.Color,
+                StandardCost = prod.StandardCost,
+                ListPrice = prod.ListPrice,
+                Size = prod.Size,
+                SalesOrderID = sale.SalesOrderID,
+                OrderQty = sale.OrderQty,
+                UnitPrice = sale.UnitPrice,
+                LineTotal = sale.LineTotal
+              }).OrderBy(p => p.Name).ToList();
 
+      // Solo une las ventas que tienen una cantidad de 6
 
       return list;
     }
@@ -96,14 +115,29 @@
     /// </summary>
     public List<ProductOrder> InnerJoinTwoFieldsMethod()
     {
-      List<ProductOrder> list = null;
+      List<ProductOrder> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
       // Load all Sales Order Data
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Method Syntax Here
-
+      list = products.Join(sales,
+              prod => new { prod.ProductID, Qty = (short)6 },
+              sale => new { sale.ProductID, Qty = sale.OrderQty },
+              (prod, sale) => new ProductOrder
+              {
+                ProductID = prod.ProductID,
+                Name = prod.Name,
+                Color = prod.Color,
+                StandardCost = prod.StandardCost,
+                ListPrice = prod.ListPrice,
+                Size = prod.Size,
+                SalesOrderID = sale.SalesOrderID,
+                OrderQty = sale.OrderQty,
+                UnitPrice = sale.UnitPrice,
+                LineTotal = sale.LineTotal
+              }).OrderBy(p => p.Name).ToList();
 
       return list;
     }
