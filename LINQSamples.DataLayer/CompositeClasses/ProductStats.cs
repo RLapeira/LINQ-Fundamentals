@@ -55,9 +55,9 @@ namespace LINQSamples
 
       sb.AppendLine($"Size: {Size}");
       sb.AppendLine($"Total Products: {TotalProducts}");
-      sb.AppendLine($"Minimum List Price: {MinListPrice:c}");
-      sb.AppendLine($"Maximum List Price: {MaxListPrice:c}");
-      sb.AppendLine($"Average List Price: {AverageListPrice:c}");
+      sb.AppendLine($"Minimum List Price: ${MinListPrice:n}");
+      sb.AppendLine($"Maximum List Price: ${MaxListPrice:n}");
+      sb.AppendLine($"Average List Price: ${AverageListPrice:n}");
 
       return sb.ToString();
     }
