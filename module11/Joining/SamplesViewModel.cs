@@ -152,14 +152,23 @@
     /// </summary>
     public List<ProductSales> JoinIntoQuery()
     {
-      List<ProductSales> list = null;
+      List<ProductSales> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
       // Load all Sales Order Data
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Query Syntax Here
-
+      list = (from prod in products
+              orderby prod.ProductID
+              join sale in sales
+              on prod.ProductID equals sale.ProductID
+              into newSales
+              select new ProductSales
+              {
+                Product = prod,
+                Sales = newSales.OrderBy(s => s.SalesOrderID).ToList()
+              }).ToList();
 
       return list;
     }
@@ -173,16 +182,23 @@
     /// </summary>
     public List<ProductSales> JoinIntoMethod()
     {
-      List<ProductSales> list = null;
+      List<ProductSales> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
       // Load all Sales Order Data
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Method Syntax Here
+      list = products.OrderBy(p => p.ProductID).GroupJoin(sales,
+              prod => prod.ProductID,
+              sale => sale.ProductID,
+              (prod, newSales) => new ProductSales
+              {
+                  Product = prod,
+                  Sales = newSales.OrderBy(s => s.SalesOrderID).ToList()
+              }).ToList();
 
-
-      return list;
+            return list;
     }
     #endregion
 
