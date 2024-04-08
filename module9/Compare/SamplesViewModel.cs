@@ -112,7 +112,7 @@
     /// </summary>
     public bool SequenceEqualUsingComparerQuery()
     {
-      bool value = false;
+      bool value;
       ProductComparer pc = new ProductComparer();
       // Load all Product Data From Data Source 1
       List<Product> list1 = ProductRepository.GetAll();
@@ -123,7 +123,8 @@
       //list1.RemoveAt(0);
 
       // Write Query Syntax Here
-      
+      value = (from prod in list1 select prod)
+                .SequenceEqual(list2, pc);
 
       return value;
     }
@@ -135,7 +136,7 @@
     /// </summary>
     public bool SequenceEqualUsingComparerMethod()
     {
-      bool value = false;
+      bool value;
       ProductComparer pc = new ProductComparer();
       // Load all Product Data From Data Source 1
       List<Product> list1 = ProductRepository.GetAll();
@@ -146,7 +147,7 @@
       //list1.RemoveAt(0);
 
       // Write Method Syntax Here
-      
+      value = list1.SequenceEqual(list2, pc);
 
       return value;
     }
