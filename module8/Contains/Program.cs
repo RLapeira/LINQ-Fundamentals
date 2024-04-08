@@ -11,7 +11,9 @@ SamplesViewModel vm = new();
 //var result = vm.AnyQuery();
 //var result = vm.AnyQuery();
 //var result = vm.ContainsQuery();
-var result = vm.ContainsMethod();
+//var result = vm.ContainsMethod();
+//var result = vm.ContainsComparerQuery();
+var result = vm.ContainsComparerMethod();
 
 // Display Results
 vm.Display(result);

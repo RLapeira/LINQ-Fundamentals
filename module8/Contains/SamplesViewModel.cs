@@ -141,10 +141,11 @@
     {
       List<Product> products = GetProducts();
       ProductIdComparer pc = new();
-      bool value = false;
+      bool value;
 
       // Write Query Syntax Here
-      
+      value = (from prod in products select prod)
+                .Contains(new Product { ProductID = 744 }, pc);
 
       return value;
     }
@@ -159,10 +160,10 @@
     {
       List<Product> products = GetProducts();
       ProductIdComparer pc = new();
-      bool value = false;
+      bool value;
 
       // Write Method Syntax Here
-      
+      value = products.Contains(new Product { ProductID = 744 }, pc);
 
       return value;
     }
