@@ -87,11 +87,16 @@
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      var list = (from prod in products
+                  let tmp = prod.TotalSales = CalculateTotalSalesForProduct(prod, sales)      
+                  select prod);
 
-      
+      // Como devuelve un IEnumerable<Product>,
+      // podemos aplicarle la función where:
+      list = list.Where(prod => prod.TotalSales > 0);
 
-      return null;
+      // Y finalmente pasarlo como una lista:
+      return list.ToList();
     }
     #endregion
 
@@ -121,17 +126,12 @@
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Method Syntax Here
-     
+      products.ForEach(p => p.TotalSales = CalculateTotalSalesForProduct(p, sales));
+      products = products.Where(p => p.TotalSales > 0).ToList();
 
       return products;
     }
     #endregion
-
-
-
-
-
-
 
     #region Extra Example
     public List<Product> ForEachQueryCalculateNameLength() {
