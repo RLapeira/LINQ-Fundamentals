@@ -389,12 +389,25 @@
     /// </summary>
     public List<ProductStats> AggregateUsingGroupByQuery()
     {
-      List<ProductStats> list = null;
+      List<ProductStats> list;
       // Load all Sales Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              group prod by prod.Size into sizeGroup
+              where sizeGroup.Count() > 0
+              select new ProductStats
+              {
+                Size = sizeGroup.Key,
+                TotalProducts = sizeGroup.Count(),
+                MinListPrice = sizeGroup.Min(s => s.ListPrice),
+                MaxListPrice = sizeGroup.Max(s => s.ListPrice),
+                AverageListPrice = sizeGroup.Average(s => s.ListPrice)
+              }
+              into result
+              orderby result.Size
+              select result).ToList();
 
       return list;
     }
@@ -406,12 +419,21 @@
     /// </summary>
     public List<ProductStats> AggregateUsingGroupByMethod()
     {
-      List<ProductStats> list = null;
+      List<ProductStats> list;
       // Load all Sales Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      list = products.GroupBy(sale => sale.Size)
+                      .Select(sizeGroup => new ProductStats
+                      {
+                        Size = sizeGroup.Key,
+                        TotalProducts = sizeGroup.Count(),
+                        MinListPrice = sizeGroup.Min(s => s.ListPrice),
+                        MaxListPrice = sizeGroup.Max(s => s.ListPrice),
+                        AverageListPrice = sizeGroup.Average(s => s.ListPrice)
+                      })
+                      .OrderBy(result => result.Size).ToList();
 
       return list;
     }
