@@ -8,11 +8,15 @@
     /// </summary>
     public List<IGrouping<string, Product>> GroupByQuery()
     {
-      List<IGrouping<string, Product>> list = null;
+      List<IGrouping<string, Product>> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
+      list = (from prod in products
+              orderby prod.Size
+              group prod by prod.Size)
+              .ToList();
 
       return list;
     }
@@ -24,12 +28,12 @@
     /// </summary>
     public List<IGrouping<string, Product>> GroupByMethod()
     {
-      List<IGrouping<string, Product>> list = null;
+      List<IGrouping<string, Product>> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      list = products.OrderBy(p => p.Size).GroupBy(p => p.Size).ToList();
 
       return list;
     }
