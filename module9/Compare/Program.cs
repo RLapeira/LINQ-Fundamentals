@@ -19,7 +19,9 @@ SamplesViewModel vm = new();
 //var result = vm.ExceptByQuery();
 //var result = vm.ExceptByMethod();
 //var result = vm.ExceptByProductSalesQuery();
-var result = vm.ExceptByProductSalesMethod();
+//var result = vm.ExceptByProductSalesMethod();
+//var result = vm.IntersectIntegersQuery();
+var result = vm.IntersectIntegersMethod();
 
 // Display Results
 vm.Display(result);
