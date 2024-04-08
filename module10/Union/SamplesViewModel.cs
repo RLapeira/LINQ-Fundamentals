@@ -53,7 +53,7 @@
     /// </summary>
     public List<Product> UnionQuery()
     {
-      List<Product> list = null;
+      List<Product> list;
       ProductComparer pc = new();
       // Load all Product Data
       List<Product> list1 = ProductRepository.GetAll();
@@ -61,7 +61,10 @@
       List<Product> list2 = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-     
+      list = (from prod in list1 select prod)
+                .Union(list2, pc)
+                .OrderBy(p => p.Name)
+                .ToList();
 
       return list;
     }
@@ -74,7 +77,7 @@
     /// </summary>
     public List<Product> UnionMethod()
     {
-      List<Product> list = null;
+      List<Product> list;
       ProductComparer pc = new();
       // Load all Product Data
       List<Product> list1 = ProductRepository.GetAll();
@@ -82,7 +85,9 @@
       List<Product> list2 = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      list = list1.Union(list2, pc)
+                .OrderBy(p => p.Name)
+                .ToList();
 
       return list;
     }
