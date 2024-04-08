@@ -17,7 +17,7 @@ namespace LINQSamples
 
       sb.AppendLine($"Order ID: {SalesOrderID}");
       sb.AppendLine($"   Product ID: {ProductID}   Qty: {OrderQty}");
-      sb.AppendLine($"   Unit Price: {UnitPrice:c}   Total: {LineTotal:c}");
+      sb.AppendLine($"   Unit Price: ${UnitPrice:n}   Total: ${LineTotal:n}");
 
       return sb.ToString();
     }
