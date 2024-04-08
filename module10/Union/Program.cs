@@ -11,7 +11,9 @@ SamplesViewModel vm = new();
 //var result = vm.UnionByQuery();
 //var result = vm.UnionByMethod();
 //var result = vm.ConcatIntegersQuery();
-var result = vm.ConcatIntegersMethod();
+//var result = vm.ConcatIntegersMethod();
+//var result = vm.ConcatQuery();
+var result = vm.ConcatMethod();
 
 // Display Results
 vm.Display(result);
