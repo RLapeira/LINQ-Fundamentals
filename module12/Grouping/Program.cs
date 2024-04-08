@@ -11,7 +11,9 @@ SamplesViewModel vm = new();
 //var result = vm.GroupByWhereQuery();
 //var result = vm.GroupByWhereMethod();
 //var result = vm.GroupBySubQueryQuery();
-var result = vm.GroupBySubQueryMethod();
+//var result = vm.GroupBySubQueryMethod();
+//var result = vm.GroupByDistinctQuery();
+var result = vm.GroupByDistinctMethod();
 
 // Display Results
 vm.Display(result);

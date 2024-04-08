@@ -203,12 +203,16 @@
     /// </summary>
     public List<string> GroupByDistinctQuery()
     {
-      List<string> list = null;
+      List<string> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              orderby prod.Color
+              group prod by prod.Color into groupedColors
+              select groupedColors.FirstOrDefault().Color).ToList();
+
       return list;
     }
     #endregion
@@ -220,12 +224,14 @@
     /// </summary>
     public List<string> GroupByDistinctMethod()
     {
-      List<string> list =null;
+      List<string> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      list = products.GroupBy(p => p.Color)
+                      .Select(groupedColors => groupedColors.FirstOrDefault().Color)
+                      .OrderBy(c => c).ToList();
 
       return list;
     }
