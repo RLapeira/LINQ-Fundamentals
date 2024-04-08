@@ -19,7 +19,9 @@ SamplesViewModel vm = new();
 //var result = vm.AverageQuery();
 //var result = vm.AverageMethod();
 //var result = vm.SumQuery();
-var result = vm.SumMethod();
+//var result = vm.SumMethod();
+//var result = vm.AggregateQuery();
+var result = vm.AggregateMethod();
 
 // Display Results
 vm.Display(result);

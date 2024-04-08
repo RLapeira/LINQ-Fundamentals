@@ -315,12 +315,14 @@
     /// </summary>
     public decimal AggregateQuery()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      value = (from prod in products
+               select prod)
+                .Aggregate(0M, (sum, prod) => sum += prod.ListPrice);
 
       return value;
     }
@@ -332,12 +334,12 @@
     /// </summary>
     public decimal AggregateMethod()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      value = products.Aggregate(0M, (sum, prod) => sum += prod.ListPrice);
 
       return value;
     }
