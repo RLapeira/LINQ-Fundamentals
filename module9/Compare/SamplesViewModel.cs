@@ -496,14 +496,15 @@
     /// </summary>
     public List<Product> IntersectByQuery()
     {
-      List<Product> list = null;
+      List<Product> list;
       List<Product> products = ProductRepository.GetAll();
 
       // The list of colors to locate in the list
       List<string> colors = new() { "Red", "Black" };
 
       // Write Query Syntax Here
-      
+      list = (from prod in products select prod)
+                .IntersectBy(colors, p => p.Color).ToList();
 
       return list;
     }
@@ -515,14 +516,14 @@
     /// </summary>
     public List<Product> IntersectByMethod()
     {
-      List<Product> list = null;
+      List<Product> list;
       List<Product> products = ProductRepository.GetAll();
 
       // The list of colors to locate in the list
       List<string> colors = new() { "Red", "Black" };
 
       // Write Method Syntax Here
-      
+      list = products.IntersectBy(colors, p => p.Color).ToList();
 
       return list;
     }
