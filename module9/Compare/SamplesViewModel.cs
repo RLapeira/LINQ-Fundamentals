@@ -284,7 +284,7 @@
     /// </summary>
     public List<Product> ExceptByQuery()
     {
-      List<Product> list = null;
+      List<Product> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
@@ -292,7 +292,7 @@
       List<string> colors = new() { "Red", "Black" };
 
       // Write Query Syntax Here
-      
+      list = (from prod in products select prod).ExceptBy(colors, p => p.Color).ToList();
 
       return list;
     }
@@ -305,7 +305,7 @@
     /// </summary>
     public List<Product> ExceptByMethod()
     {
-      List<Product> list = null;
+      List<Product> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
@@ -313,7 +313,7 @@
       List<string> colors = new() { "Red", "Black" };
 
       // Write Method Syntax Here
-      
+      list = products.ExceptBy(colors, p => p.Color).ToList();
 
       return list;
     }
