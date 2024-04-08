@@ -9,16 +9,31 @@
     /// </summary>
     public List<ProductOrder> InnerJoinQuery()
     {
-      List<ProductOrder> list = null;
+      List<ProductOrder> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
       // Load all Sales Order Data
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Query Syntax Here
+      list = (from prod in products
+              join sale in sales
+              on prod.ProductID equals sale.ProductID
+              select new ProductOrder
+              {
+                  ProductID = prod.ProductID,
+                  Name = prod.Name,
+                  Color = prod.Color,
+                  StandardCost = prod.StandardCost,
+                  ListPrice = prod.ListPrice,
+                  Size = prod.Size,
+                  SalesOrderID = sale.SalesOrderID,
+                  OrderQty = sale.OrderQty,
+                  UnitPrice = sale.UnitPrice,
+                  LineTotal = sale.LineTotal
+              }).OrderBy(p => p.Name).ToList();
 
-
-      return list;
+            return list;
     }
     #endregion
 
@@ -29,14 +44,28 @@
     /// </summary>
     public List<ProductOrder> InnerJoinMethod()
     {
-      List<ProductOrder> list = null;
+      List<ProductOrder> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
       // Load all Sales Order Data
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Method Syntax Here
-
+      list = products.Join(sales, prod => prod.ProductID,
+              sale => sale.ProductID,
+              (prod, sale) => new ProductOrder
+              {
+                ProductID = prod.ProductID,
+                Name = prod.Name,
+                Color = prod.Color,
+                StandardCost = prod.StandardCost,
+                ListPrice = prod.ListPrice,
+                Size = prod.Size,
+                SalesOrderID = sale.SalesOrderID,
+                OrderQty = sale.OrderQty,
+                UnitPrice = sale.UnitPrice,
+                LineTotal = sale.LineTotal
+              }).OrderBy(p => p.Name).ToList();
 
       return list;
     }
