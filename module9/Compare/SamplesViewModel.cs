@@ -234,7 +234,7 @@
     /// </summary>
     public List<Product> ExceptUsingComparerQuery()
     {
-      List<Product> list = null;
+      List<Product> list;
       ProductComparer pc = new();
       // Load all Product Data From Data Source 1
       List<Product> list1 = ProductRepository.GetAll();
@@ -246,7 +246,8 @@
       list2.RemoveAll(prod => prod.Color == "Black");
 
       // Write Query Syntax Here
-      
+      list = (from prod in list1 select prod)
+                .Except(list2, pc).ToList();
 
       return list;
     }
@@ -258,7 +259,7 @@
     /// </summary>
     public List<Product> ExceptUsingComparerMethod()
     {
-      List<Product> list = null;
+      List<Product> list;
       ProductComparer pc = new();
       // Load all Product Data
       List<Product> list1 = ProductRepository.GetAll();
@@ -270,7 +271,7 @@
       list2.RemoveAll(prod => prod.Color == "Black");
 
       // Write Method Syntax Here
-      
+      list = list1.Except(list2, pc).ToList();
 
       return list;
     }

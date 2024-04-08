@@ -13,7 +13,9 @@ SamplesViewModel vm = new();
 //var result = vm.ExceptIntegersQuery();
 //var result = vm.ExceptIntegersMethod();
 //var result = vm.ExceptProductSalesQuery();
-var result = vm.ExceptProductSalesMethod();
+//var result = vm.ExceptProductSalesMethod();
+//var result = vm.ExceptUsingComparerQuery();
+var result = vm.ExceptUsingComparerMethod();
 
 // Display Results
 vm.Display(result);
