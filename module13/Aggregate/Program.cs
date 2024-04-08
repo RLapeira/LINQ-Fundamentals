@@ -4,7 +4,10 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.CountQuery();
+//var result = vm.CountQuery();
+//var result = vm.CountMethod();
+//var result = vm.CountFilteredQuery();
+var result = vm.CountFilteredMethod();
 
 // Display Results
 vm.Display(result);

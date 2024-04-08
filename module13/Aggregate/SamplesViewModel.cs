@@ -8,12 +8,13 @@
     /// </summary>
     public int CountQuery()
     {
-      int value = 0;
+      int value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      value = (from prod in products
+               select prod).Count();
 
       return value;
     }
@@ -25,12 +26,12 @@
     /// </summary>
     public int CountMethod()
     {
-      int value = 0;
+      int value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      value = products.Count;
 
       return value;
     }
@@ -42,15 +43,20 @@
     /// </summary>
     public int CountFilteredQuery()
     {
-      int value = 0;
+      int value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax #1 Here
-      
+      value = (from prod in products
+               select prod)
+               .Count(prod => prod.Color == "Red");
 
       // Write Query Syntax #2 Here
-     
+      value = (from prod in products
+               where prod.Color == "Red"
+               select prod)
+               .Count();
 
       return value;
     }
@@ -62,15 +68,14 @@
     /// </summary>
     public int CountFilteredMethod()
     {
-      int value = 0;
+      int value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
-      // Write Method Syntax #1 Here
-      
+      value = products.Count(p => p.Color == "Red");
 
       // Write Method Syntax #2 Here
-      
+      value = products.Where(p => p.Color == "Red").Count();
 
       return value;
     }
