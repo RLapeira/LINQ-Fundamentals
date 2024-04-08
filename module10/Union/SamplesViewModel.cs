@@ -9,14 +9,17 @@
     /// </summary>
     public List<int> UnionIntegersQuery()
     {
-      List<int> list = null;
+      List<int> list;
       // Create a list of numbers
       List<int> list1 = new() { 5, 2, 3, 4, 5 };
       // Create a list of numbers
       List<int> list2 = new() { 1, 2, 3, 4, 5 };
 
       // Write Query Syntax Here
-
+      list = (from n in list1 select n)
+                .Union(list2)
+                .OrderBy(n => n)
+                .ToList();
 
       return list;
     }
@@ -29,14 +32,15 @@
     /// </summary>
     public List<int> UnionIntegersMethod()
     {
-      List<int> list = null;
+      List<int> list;
       // Create a list of numbers
       List<int> list1 = new() { 5, 2, 3, 4, 5 };
       // Create a list of numbers
       List<int> list2 = new() { 1, 2, 3, 4, 5 };
 
       // Write Query Syntax Here
-     
+      list = list1.Union(list2)
+                .OrderBy(n => n).ToList();
 
       return list;
     }
