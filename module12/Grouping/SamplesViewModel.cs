@@ -102,12 +102,16 @@
     /// </summary>
     public List<IGrouping<string, Product>> GroupByWhereQuery()
     {
-      List<IGrouping<string, Product>> list = null;
+      List<IGrouping<string, Product>> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              orderby prod.Size
+              group prod by prod.Size into sizes
+              where sizes.Count() > 2
+              select sizes).ToList();
 
       return list;
     }
@@ -120,12 +124,15 @@
     /// </summary>
     public List<IGrouping<string, Product>> GroupByWhereMethod()
     {
-      List<IGrouping<string, Product>> list = null;
+      List<IGrouping<string, Product>> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      list = products.OrderBy(p => p.Size)
+                     .GroupBy(prod => prod.Size)
+                     .Where(sizes => sizes.Count() > 2)
+                     .Select(sizes => sizes).ToList();
 
       return list;
     }
