@@ -9,10 +9,11 @@
     public bool AllQuery()
     {
       List<Product> products = GetProducts();
-      bool value = false;
+      bool value;
 
       // Write Query Syntax Here
-      
+      value = (from prod in products select prod)
+                .All(prod => prod.ListPrice > prod.StandardCost);
 
       return value;
     }
@@ -25,10 +26,10 @@
     public bool AllMethod()
     {
       List<Product> products = GetProducts();
-      bool value = false;
+      bool value;
 
       // Write Method Syntax Here
-      
+      value = products.All(prod => prod.ListPrice > prod.StandardCost);
 
       return value;
     }
@@ -41,10 +42,11 @@
     public bool AllSalesQuery()
     {
       List<SalesOrder> sales = GetSales();
-      bool value = false;
+      bool value;
 
       // Write Query Syntax Here
-      
+      value = (from sale in sales select sale)
+               .All(sale => sale.OrderQty >= 1);
 
       return value;
     }
@@ -57,10 +59,10 @@
     public bool AllSalesMethod()
     {
       List<SalesOrder> sales = GetSales();
-      bool value = false;
+      bool value;
 
       // Write Method Syntax Here
-      
+      value = sales.All(sale => sale.OrderQty >= 1);
 
       return value;
     }
