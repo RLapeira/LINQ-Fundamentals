@@ -445,12 +445,29 @@
     /// </summary>
     public List<ProductStats> AggregateMoreEfficientMethod()
     {
-      List<ProductStats> list = null;
+      List<ProductStats> list;
       // Load all Sales Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      list = products.GroupBy(sale => sale.Size)
+              .Where(sizeGroup => sizeGroup.Count() > 0)
+              .Select(sizeGroup => {
+                // Create the accumulator object and set the Size
+                ProductStats acc = new()
+                {
+                  Size = sizeGroup.Key
+                };
+
+                // Iterate over the collection one time
+                // and calculate all stats for this Size Group
+                sizeGroup.Aggregate(acc, (acc, prod) => acc.Accumulate(prod),
+                                    acc => acc.ComputeAverage());
+
+                // return the accumulated results
+                return acc;
+              })
+              .OrderBy(result => result.Size).ToList();
 
       return list;
     }

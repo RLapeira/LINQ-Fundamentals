@@ -25,7 +25,8 @@ SamplesViewModel vm = new();
 //var result = vm.AggregateCustomQuery();
 //var result = vm.AggregateCustomMethod();
 //var result = vm.AggregateUsingGroupByQuery();
-var result = vm.AggregateUsingGroupByMethod();
+//var result = vm.AggregateUsingGroupByMethod();
+var result = vm.AggregateMoreEfficientMethod();
 
 // Display Results
 vm.Display(result);
