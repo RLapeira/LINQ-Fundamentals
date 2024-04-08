@@ -49,7 +49,7 @@
     /// </summary>
     public bool SequenceEqualObjectsQuery()
     {
-      bool value = false;
+      bool value;
       // Create a list of products
       List<Product> list1 = new()
       {
@@ -64,10 +64,13 @@
       };
 
       // Make Collections the Same
-      // list2 = list1;
+      list2 = list1;
 
       // Write Query Syntax Here
-      
+      value = (from prod in list1 select prod)
+                .SequenceEqual(list2);
+      // para los objetos, compara las referencias,
+      // por lo que dará falso si no hacemos el equal anterior
 
       return value;
     }
@@ -79,7 +82,7 @@
     /// </summary>
     public bool SequenceEqualObjectsMethod()
     {
-      bool value = false;
+      bool value;
       // Create a list of products
       List<Product> list1 = new()
       {
@@ -94,10 +97,10 @@
       };
 
       // Make Collections the Same
-      // list2 = list1;
+      list2 = list1;
 
       // Write Method Syntax Here
-      
+      value = list1.SequenceEqual(list2);
 
       return value;
     }
