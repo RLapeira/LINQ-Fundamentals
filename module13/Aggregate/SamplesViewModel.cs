@@ -87,15 +87,15 @@
     /// </summary>
     public decimal MinQuery()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax #1 Here
-     
+      value = (from prod in products select prod.ListPrice).Min();
 
       // Write Query Syntax #2 Here
-      
+      value = (from prod in products select prod).Min(prod => prod.ListPrice);
 
       return value;
     }
@@ -107,15 +107,15 @@
     /// </summary>
     public decimal MinMethod()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax #1 Here
-      
+      value = products.Select(p => p.ListPrice).Min();
 
       // Write Method Syntax #2 Here
-      
+      value = products.Min(p => p.ListPrice);
 
       return value;
     }
@@ -127,15 +127,15 @@
     /// </summary>
     public decimal MaxQuery()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax #1 Here
-      
+      value = (from prod in products select prod.ListPrice).Max();
 
       // Write Query Syntax #2 Here
-     
+      value = (from prod in products select prod).Max(prod => prod.ListPrice);
 
       return value;
     }
@@ -147,15 +147,15 @@
     /// </summary>
     public decimal MaxMethod()
     {
-      decimal value = 0;
+      decimal value;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax #1 Here
-      
+      value = products.Select(p => p.ListPrice).Max();
 
       // Write Method Syntax #2 Here
-      
+      value = products.Max(p => p.ListPrice);
 
       return value;
     }

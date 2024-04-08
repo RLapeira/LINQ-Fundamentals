@@ -7,7 +7,11 @@ SamplesViewModel vm = new();
 //var result = vm.CountQuery();
 //var result = vm.CountMethod();
 //var result = vm.CountFilteredQuery();
-var result = vm.CountFilteredMethod();
+//var result = vm.CountFilteredMethod();
+//var result = vm.MinQuery();
+//var result = vm.MinMethod();
+//var result = vm.MaxQuery();
+var result = vm.MaxMethod();
 
 // Display Results
 vm.Display(result);
