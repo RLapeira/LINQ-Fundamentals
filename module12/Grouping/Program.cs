@@ -9,7 +9,9 @@ SamplesViewModel vm = new();
 //var result = vm.GroupByUsingKeyQuery();
 //var result = vm.GroupByUsingKeyMethod();
 //var result = vm.GroupByWhereQuery();
-var result = vm.GroupByWhereMethod();
+//var result = vm.GroupByWhereMethod();
+//var result = vm.GroupBySubQueryQuery();
+var result = vm.GroupBySubQueryMethod();
 
 // Display Results
 vm.Display(result);
