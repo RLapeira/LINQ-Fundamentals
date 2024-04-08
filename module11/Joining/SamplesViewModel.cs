@@ -208,14 +208,31 @@
     /// </summary>
     public List<ProductOrder> LeftOuterJoinQuery()
     {
-      List<ProductOrder> list = null;
+      List<ProductOrder> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
       // Load all Sales Order Data
       List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
       // Write Query Syntax Here
-
+      list = (from prod in products
+              join sale in sales
+              on prod.ProductID equals sale.ProductID
+                into newSales
+              from sale in newSales.DefaultIfEmpty()
+              select new ProductOrder
+              {
+                ProductID = prod.ProductID,
+                Name = prod.Name,
+                Color = prod.Color,
+                StandardCost = prod.StandardCost,
+                ListPrice = prod.ListPrice,
+                Size = prod.Size,
+                SalesOrderID = sale?.SalesOrderID,
+                OrderQty = sale?.OrderQty,  // Use the null-conditional operator
+                UnitPrice = sale?.UnitPrice,
+                LineTotal = sale?.LineTotal
+              }).OrderBy(p => p.Name).ToList();
 
       return list;
     }
