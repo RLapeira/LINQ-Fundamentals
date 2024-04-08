@@ -62,12 +62,15 @@
     /// </summary>
     public List<IGrouping<string, Product>> GroupByUsingKeyQuery()
     {
-      List<IGrouping<string, Product>> list = null;
+      List<IGrouping<string, Product>> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      list = (from prod in products
+              group prod by prod.Size into sizes
+              orderby sizes.Key
+              select sizes).ToList();
 
       return list;
     }
@@ -79,12 +82,14 @@
     /// </summary>
     public List<IGrouping<string, Product>> GroupByUsingKeyMethod()
     {
-      List<IGrouping<string, Product>> list = null;
+      List<IGrouping<string, Product>> list;
       // Load all Product Data
       List<Product> products = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-     
+      list = products.GroupBy(prod => prod.Size)
+                     .OrderBy(sizes => sizes.Key)
+                     .Select(sizes => sizes).ToList();
 
       return list;
     }
