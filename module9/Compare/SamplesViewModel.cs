@@ -159,14 +159,14 @@
     /// </summary>
     public List<int> ExceptIntegersQuery()
     {
-      List<int> list = null;
+      List<int> list;
       // Create a list of numbers
       List<int> list1 = new() { 5, 2, 3, 4, 5 };
       // Create a list of numbers
       List<int> list2 = new() { 3, 4, 5 };
 
       // Write Query Syntax Here
-      
+      list = (from n in list1 select n).Except(list2).ToList();
 
       return list;
     }
@@ -178,14 +178,14 @@
     /// </summary>
     public List<int> ExceptIntegersMethod()
     {
-      List<int> list = null;
+      List<int> list;
       // Create a list of numbers
       List<int> list1 = new() { 5, 2, 3, 4, 5 };
       // Create a list of numbers
       List<int> list2 = new() { 3, 4, 5 };
 
       // Write Method Syntax Here
-      
+      list = list1.Except(list2).ToList();
 
       return list;
     }
