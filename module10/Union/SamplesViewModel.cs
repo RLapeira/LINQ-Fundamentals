@@ -99,14 +99,17 @@
     /// </summary>
     public List<Product> UnionByQuery()
     {
-      List<Product> list = null;
+      List<Product> list;
       // Load all Product Data
       List<Product> list1 = ProductRepository.GetAll();
       // Load all Product Data
       List<Product> list2 = ProductRepository.GetAll();
 
       // Write Query Syntax Here
-      
+      list = (from prod in list1 select prod)
+                .UnionBy(list2, p => p.Color)
+                .OrderBy(p => p.Name)
+                .ToList();
 
       return list;
     }
@@ -118,14 +121,16 @@
     /// </summary>
     public List<Product> UnionByMethod()
     {
-      List<Product> list = null;
+      List<Product> list;
       // Load all Product Data
       List<Product> list1 = ProductRepository.GetAll();
       // Load all Product Data
       List<Product> list2 = ProductRepository.GetAll();
 
       // Write Method Syntax Here
-      
+      list = list1.UnionBy(list2, p => p.Color)
+                .OrderBy(p => p.Name)
+                .ToList();
 
       return list;
     }

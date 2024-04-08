@@ -7,7 +7,9 @@ SamplesViewModel vm = new();
 //var result = vm.UnionIntegersQuery();
 //var result = vm.UnionIntegersMethod();
 //var result = vm.UnionQuery();
-var result = vm.UnionMethod();
+//var result = vm.UnionMethod();
+//var result = vm.UnionByQuery();
+var result = vm.UnionByMethod();
 
 // Display Results
 vm.Display(result);
