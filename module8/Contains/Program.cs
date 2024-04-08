@@ -9,7 +9,9 @@ SamplesViewModel vm = new();
 //var result = vm.AllSalesQuery();
 //var result = vm.AllSalesMethod();
 //var result = vm.AnyQuery();
-var result = vm.AnyQuery();
+//var result = vm.AnyQuery();
+//var result = vm.ContainsQuery();
+var result = vm.ContainsMethod();
 
 // Display Results
 vm.Display(result);

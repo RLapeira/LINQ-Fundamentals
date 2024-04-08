@@ -108,10 +108,10 @@
     public bool ContainsQuery()
     {
       List<int> numbers = new() { 1, 2, 3, 4, 5 };
-      bool value = false;
+      bool value;
 
       // Write Query Syntax Here
-      
+      value = (from n in numbers select n).Contains(3);
 
       return value;
     }
@@ -124,10 +124,10 @@
     public bool ContainsMethod()
     {
       List<int> numbers = new() { 1, 2, 3, 4, 5 };
-      bool value = false;
+      bool value;
 
       // Write Method Syntax Here
-      
+      value = numbers.Contains(3);
 
       return value;
     }
