@@ -75,10 +75,11 @@
     public bool AnyQuery()
     {
       List<SalesOrder> sales = GetSales();
-      bool value = false;
+      bool value;
 
       // Write Query Syntax Here
-      
+      value = (from sale in sales select sale)
+                .Any(s => s.LineTotal > 10000);
 
       return value;
     }
@@ -91,10 +92,10 @@
     public bool AnyMethod()
     {
       List<SalesOrder> sales = GetSales();
-      bool value = false;
+      bool value;
 
       // Write Method Syntax Here
-      
+      value = sales.Any(s => s.LineTotal > 10000);
 
       return value;
     }
